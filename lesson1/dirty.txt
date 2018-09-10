@@ -1,0 +1,6 @@
+Issues
+    ABCWeather.csv
+        Change column name from Wind SpeedMPH to WindMPH
+        Convert temp from C to F
+    KLMWeather.csv
+        Reorder from TemperatureF, Year, Month, Day, Wind SpeedMPH, TimeCST
