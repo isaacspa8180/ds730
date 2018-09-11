@@ -10,7 +10,7 @@ def test_factorial(val):
 def format_answer(vals):
     if not vals:
         return 'No Primes'
-    symbols = [',', ':', '!']
+    symbols = [':', '!', ',']
     nested = list(zip(sorted(vals), itertools.cycle(symbols)))
     flatlist = []
     for tup in nested:

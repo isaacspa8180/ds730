@@ -48,7 +48,7 @@ for k, v in dats.items():
     cnt = 0
     for rw in v:
         if rw['Year'] == 2006:
-            if rw['TemperatureF'] != -9999:
+            if rw['TemperatureF'] >= -129:
                 acc += rw['TemperatureF']
                 cnt += 1
     temp_2006[k] = acc / cnt        
