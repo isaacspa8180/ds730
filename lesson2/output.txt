@@ -1,0 +1,73 @@
+18/09/16 13:54:02 INFO fs.TestDFSIO: ----- TestDFSIO ----- : write 
+18/09/16 13:54:02 INFO fs.TestDFSIO:Date & time: Sun Sep 16 13:54:02 UTC 2018
+18/09/16 13:54:02 INFO fs.TestDFSIO:Number of files: 10
+18/09/16 13:54:02 INFO fs.TestDFSIO: Total MBytes processed: 500.0 
+18/09/16 13:54:02 INFO fs.TestDFSIO:Throughput mb/sec: 4.320326271039989 
+18/09/16 13:54:02 INFO fs.TestDFSIO: Average IO rate mb/sec: 4.348126411437988 
+18/09/16 13:54:02 INFO fs.TestDFSIO:IO rate std deviation: 0.33209871090284576
+18/09/16 13:54:02 INFO fs.TestDFSIO: Test exec time sec: 251.963
+18/09/16 14:18:40 INFO fs.TestDFSIO: ----- TestDFSIO ----- : read 
+18/09/16 14:18:40 INFO fs.TestDFSIO:Date & time: Sun Sep 16 14:18:40 UTC 2018 
+18/09/16 14:18:40 INFO fs.TestDFSIO:Number of files: 10 
+18/09/16 14:18:40 INFO fs.TestDFSIO: Total MBytes processed: 500.0
+18/09/16 14:18:40 INFO fs.TestDFSIO:Throughput mb/sec: 12.978248455588433 
+18/09/16 14:18:40 INFO fs.TestDFSIO: Average IO rate mb/sec: 54.41778564453125
+18/09/16 14:18:40 INFO fs.TestDFSIO:IO rate std deviation: 113.90630793928118 
+18/09/16 14:18:40 INFO fs.TestDFSIO: Test exec time sec: 79.603
+18/09/16 14:27:40 INFO mapreduce.Job: Counters: 49
+File System Counters
+FILE: Number of bytes read=4160000456 
+FILE: Number of bytes written=6242626102
+FILE: Number of read operations=0 
+FILE: Number of large read operations=0 
+FILE: Number of write operations=0
+HDFS: Number of bytes read=2000002256 
+HDFS: Number of bytes written=2000000000
+HDFS: Number of read operations=51
+HDFS: Number of large read operations=0 
+HDFS: Number of write operations=2
+Job Counters
+Launched map tasks=16 
+Launched reduce tasks=1 
+Data-local map tasks=16 
+Total time spent by all maps in occupied slots (ms)=1920096 
+Total time spent by all reduces in occupied slots (ms)=76396
+Total time spent by all map tasks (ms)=1920096
+Total time spent by all reduce tasks (ms)=76396 
+Total vcore-milliseconds taken by all map tasks=1920096 
+Total vcore-milliseconds taken by all reduce tasks=76396
+Total megabyte-milliseconds taken by all map tasks=480024000
+Total megabyte-milliseconds taken by all reduce tasks=19099000
+Map-Reduce Framework
+Map input records=20000000
+Map output records=20000000 
+Map output bytes=2040000000 
+Map output materialized bytes=2080000096
+Input split bytes=2256
+Combine input records=0 
+Combine output records=0
+Reduce input groups=20000000
+Reduce shuffle bytes=2080000096 
+Reduce input records=20000000 
+Reduce output records=20000000
+Spilled Records=60000000
+Shuffled Maps =16 
+Failed Shuffles=0 
+Merged Map outputs=16 
+GC time elapsed (ms)=48461
+CPU time spent (ms)=212440
+Physical memory (bytes) snapshot=3030089728 
+Virtual memory (bytes) snapshot=32836423680 
+Total committed heap usage (bytes)=1936719872 
+Shuffle Errors
+BAD_ID=0
+CONNECTION=0
+IO_ERROR=0
+WRONG_LENGTH=0
+WRONG_MAP=0 
+WRONG_REDUCE=0
+File Input Format Counters
+Bytes Read=2000000000 
+File Output Format Counters 
+Bytes Written=2000000000
+18/09/16 14:27:40 INFO terasort.TeraSort: done 
