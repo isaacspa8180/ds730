@@ -2,3 +2,5 @@
 dat/
 *.zip
 orders.csv
+input/
+output/
