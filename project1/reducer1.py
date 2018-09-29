@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import sys
 from collections import defaultdict
 
@@ -28,10 +30,6 @@ def main(argv):
             if spent == max_:
                 d3[k].append((cust, spent))
 
-
-    # for (month, country), v in d3.items():
-    #     for cust, spent in v:
-    #         print('{0},{1}:{2}'.format(month, country, cust))
 
     for k in sorted(d3):
         for cust, spent in d3[k]:

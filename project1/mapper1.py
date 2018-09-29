@@ -1,16 +1,20 @@
-import csv
+#!/usr/bin/env python
+
 import sys
-from collections import defaultdict
+from collections import namedtuple
 from datetime import datetime
 
 
 def main(argv):
-        for rw in csv.DictReader(iter(sys.stdin.readline, '')):
-            if rw['InvoiceNo'][0].lower() != 'c' and rw['CustomerID'] != '':
-                month = datetime.strptime(rw['InvoiceDate'], '%m/%d/%Y %H:%M').month
-                spent = float(rw['UnitPrice']) * float(rw['Quantity'])
-                print('{0:02},{1}\t{2},{3}'.format(month, rw['Country'].lower(), rw['CustomerID'], spent))
-
+    Order = namedtuple('Order', ['InvoiceNo','StockCode','Description','Quantity','InvoiceDate','UnitPrice','CustomerID','Country'])
+    line = sys.stdin.readline().strip().split(',')
+    order = Order(*line)
+    while line:
+        if order.InvoiceDate[0].lower() != 'c' and order.CustomerID != '':
+            month = datetime.strptime(order.InvoiceDate, '%m/%d/%Y %H:%M').month
+            spent = float(order.UnitPrice) * float(order.Quantity)
+            print('{0:02},{1}\t{2},{3}'.format(month, order.Country, order.CustomerID, spent))
+        line = sys.stdin.readline()
 
 if __name__ == '__main__':
     main(sys.argv)
