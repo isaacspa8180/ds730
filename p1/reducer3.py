@@ -1,16 +1,7 @@
+#!/usr/bin/python
+
 import sys 
 from collections import Counter, defaultdict
-
-
-# def main(argv):
-#     d = defaultdict(list)
-#     for line in iter(sys.stdin.readline, ''):
-#         line = line.strip()
-#         k, vs = line.split('\t', 1)
-#         vs = vs.split(' ')
-#         vs = {int(v) for v in vs}
-#         d[k].append(vs)
-#     print(d)
 
 
 def main(argv):
@@ -19,6 +10,7 @@ def main(argv):
     for line in iter(sys.stdin.readline, ''):
         line = line.strip()
         me, network = line.split('\t', 1)
+        me = int(me)
         friend, friend_friends = network.split(',')
         friend_friends = set(friend_friends.split(' '))
         if me == friend:
@@ -38,20 +30,30 @@ def main(argv):
             for friend in friend_friends:
                 flat_list.append(friend)
         count_not_my_friends[me] = Counter(flat_list)
-    print(count_not_my_friends)
 
     might_know = defaultdict(list)
     for me, not_friends in count_not_my_friends.items():
         for not_friend, cnt in not_friends.items():
-            if cnt >= 2:
+            if cnt >= 2 and cnt < 4:
                 might_know[me].append(not_friend)
-    # print(might_know)
+
+    prob_know = defaultdict(list)
+    for me, not_friends in count_not_my_friends.items():
+        for not_friend, cnt in not_friends.items():
+            if cnt >= 4:
+                prob_know[me].append(not_friend)
+
+    for k in sorted(not_my_friends):
+        if might_know[k] and not prob_know[k]:
+            print('{0}:Might({1})'.format(k, ','.join(might_know[k])))
+        if might_know[k] and prob_know[k]:
+            print('{0}:Might({1}) Probably({2})'.format(k, ','.join(might_know[k]), ','.join(prob_know[k])))
+        if not might_know[k] and prob_know[k]:
+            print('{0}:Probably({1})'.format(k, ','.join(prob_know[k])))
+        if not might_know[k] and not prob_know[k]:
+            print('{0}:'.format(k))
 
 
-    # prob_know = defaultdict(list)
-    # for not_friend, cnt in count_not_my_friends.items():
-    #     if int(cnt) > 4:
-    #         prob_know[me].append(not_friend)
 
 
 if __name__ == '__main__':

@@ -1,13 +1,6 @@
+#!/usr/bin/python
+
 import sys 
-
-
-# def main(argv):
-#     for line in iter(sys.stdin.readline, ''):
-#         line = line.strip()
-#         me, friends = line.split(' : ', 1)
-#         print('{0}\t{1},{2}'.format(me, me, friends))
-#         for friend in friends.split(' '):
-#             print('{0}\t{1},{2}'.format(friend, me, friends))
 
 
 def main(argv):

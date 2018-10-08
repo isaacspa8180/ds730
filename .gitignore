@@ -4,3 +4,4 @@ dat/
 orders.csv
 input/
 output/
+*.tar.gz
