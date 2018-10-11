@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>diff</title>
+<meta name="Generator" content="Vim/8.1">
+<meta name="plugin-version" content="vim7.4_v2">
+<meta name="settings" content="whole_filler,use_css,no_foldcolumn,expand_tabs,prevent_copy=">
+<meta name="colorscheme" content="none">
+<style type="text/css">
+<!--
+pre { font-family: monospace; color: #ffffff; background-color: #000000; }
+body { font-family: monospace; color: #ffffff; background-color: #000000; }
+* { font-size: 1em; }
+.Identifier { color: #00ffff; font-weight: bold; }
+.Constant { color: #ff40ff; }
+.Special { color: #ffd7d7; }
+.Folded { color: #00ffff; background-color: #6c6c6c; padding-bottom: 1px; }
+.Statement { color: #ffff00; }
+.PreProc { color: #5fd7ff; }
+.DiffText { background-color: #ff6060; padding-bottom: 1px; font-weight: bold; }
+.DiffAdd { background-color: #0000c0; padding-bottom: 1px; }
+.DiffChange { background-color: #c000c0; padding-bottom: 1px; }
+.DiffDelete { color: #8080ff; background-color: #008080; padding-bottom: 1px; }
+-->
+<!--
+table { table-layout: fixed; }
+html, body, table, tbody { width: 100%; margin: 0; padding: 0; }
+th, td { width: 50.0%; }
+td div { overflow: auto; }
+-->
+</style>
+<script type='text/javascript'>
+<!--
+
+/* function to open any folds containing a jumped-to line before jumping to it */
+function JumpToLine()
+{
+  var lineNum;
+  lineNum = window.location.hash;
+  lineNum = lineNum.substr(1); /* strip off '#' */
+
+  if (lineNum.indexOf('L') == -1) {
+    lineNum = 'L'+lineNum;
+  }
+  if (lineNum.indexOf('W') == -1) {
+    lineNum = 'W1'+lineNum;
+  }
+  lineElem = document.getElementById(lineNum);
+  /* Always jump to new location even if the line was hidden inside a fold, or
+   * we corrected the raw number to a line ID.
+   */
+  if (lineElem) {
+    lineElem.scrollIntoView(true);
+  }
+  return true;
+}
+if ('onhashchange' in window) {
+  window.onhashchange = JumpToLine;
+}
+
+-->
+</script>
+</head>
+<body>
+<table border='1' width='100%' id='vimCodeElement'>
+<tr>
+<th>mapper1.py</th>
+<th>mapper1NEW.py</th>
+</tr><tr>
+<td valign="top"><div>
+<pre>
+<span class="Folded">+--  3 lines: !/usr/bin/env python------------------------------------------------------------------</span>
+<span class="PreProc">from</span> collections <span class="PreProc">import</span> namedtuple
+<span class="PreProc">from</span> datetime <span class="PreProc">import</span> datetime
+
+
+<span class="Statement">def</span> <span class="Identifier">main</span>(argv):
+    Order = namedtuple(<span class="Constant">'</span><span class="Constant">Order</span><span class="Constant">'</span>, [<span class="Constant">'</span><span class="Constant">InvoiceNo</span><span class="Constant">'</span>,<span class="Constant">'</span><span class="Constant">StockCode</span><span class="Constant">'</span>,<span class="Constant">'</span><span class="Constant">Description</span><span class="Constant">'</span>,<span class="Constant">'</span><span class="Constant">Quantity</span><span class="Constant">'</span>,<span class="Constant">'</span><span class="Constant">InvoiceDate</span><span class="Constant">'</span>,<span class="Constant">'</span><span class="Constant">UnitPrice</span><span class="Constant">'</span>,<span class="Constant">'</span><span class="Constant">CustomerID</span><span class="Constant">'</span>,<span class="Constant">'</span><span class="Constant">Country</span><span class="Constant">'</span>])
+<span class="DiffChange">    </span><span class="DiffText">line = sys.stdin.readline().strip().split(</span><span class="Constant DiffText">'</span><span class="Constant DiffText">,</span><span class="Constant DiffText">'</span><span class="DiffChange">)                                                  </span>
+<span class="DiffChange">    </span><span class="DiffText">order = Order(*line)</span><span class="DiffChange">                                                                            </span>
+<span class="DiffChange">    </span><span class="Statement DiffText">while</span><span class="DiffText"> line:</span><span class="DiffChange">                                                                                     </span>
+<span class="DiffDelete">----------------------------------------------------------------------------------------------------</span>
+        <span class="Statement">if</span> order.InvoiceDate[<span class="Constant">0</span>].lower() != <span class="Constant">'</span><span class="Constant">c</span><span class="Constant">'</span> <span class="Statement">and</span> order.CustomerID != <span class="Constant">''</span>:
+            month = datetime.strptime(order.InvoiceDate, <span class="Constant">'</span><span class="Constant">%m/%d/%Y %H:%M</span><span class="Constant">'</span>).month
+            spent = <span class="Identifier">float</span>(order.UnitPrice) * <span class="Identifier">float</span>(order.Quantity)
+            <span class="Identifier">print</span>(<span class="Constant">'</span><span class="Constant">{0:02},{1}</span><span class="Special">\t</span><span class="Constant">{2},{3}</span><span class="Constant">'</span>.format(month, order.Country, order.CustomerID, spent))
+<span class="DiffAdd">        line = sys.stdin.readline()</span><span class="DiffAdd">                                                                 </span>
+
+
+<span class="Statement">if</span> __name__ == <span class="Constant">'</span><span class="Constant">__main__</span><span class="Constant">'</span>:
+    main(sys.argv)
+</pre>
+</div></td>
+<td valign="top"><div>
+<pre>
+<span class="Folded">+--  3 lines: !/usr/bin/env python------------------------------------------------------------------</span>
+<span class="PreProc">from</span> collections <span class="PreProc">import</span> namedtuple
+<span class="PreProc">from</span> datetime <span class="PreProc">import</span> datetime
+
+
+<span class="Statement">def</span> <span class="Identifier">main</span>(argv):
+    Order = namedtuple(<span class="Constant">'</span><span class="Constant">Order</span><span class="Constant">'</span>, [<span class="Constant">'</span><span class="Constant">InvoiceNo</span><span class="Constant">'</span>,<span class="Constant">'</span><span class="Constant">StockCode</span><span class="Constant">'</span>,<span class="Constant">'</span><span class="Constant">Description</span><span class="Constant">'</span>,<span class="Constant">'</span><span class="Constant">Quantity</span><span class="Constant">'</span>,<span class="Constant">'</span><span class="Constant">InvoiceDate</span><span class="Constant">'</span>,<span class="Constant">'</span><span class="Constant">UnitPrice</span><span class="Constant">'</span>,<span class="Constant">'</span><span class="Constant">CustomerID</span><span class="Constant">'</span>,<span class="Constant">'</span><span class="Constant">Country</span><span class="Constant">'</span>])
+<span class="DiffChange">    </span><span class="DiffText">_ = sys.stdin.readline(</span><span class="DiffChange">)                                                                        </span>
+<span class="DiffChange">    </span><span class="Statement DiffText">for</span><span class="DiffText"> line </span><span class="Statement DiffText">in</span><span class="DiffText"> </span><span class="Identifier DiffText">iter</span><span class="DiffText">(sys.stdin.readline, </span><span class="Constant DiffText">''</span><span class="DiffText">):</span><span class="DiffChange">                                                       </span>
+<span class="DiffChange">    </span><span class="DiffText">    line = line.strip().split(</span><span class="Constant DiffText">'</span><span class="Constant DiffText">,</span><span class="Constant DiffText">'</span><span class="DiffText">)</span><span class="DiffChange">                                                              </span>
+<span class="DiffAdd">        order = Order(*line)</span><span class="DiffAdd">                                                                        </span>
+        <span class="Statement">if</span> order.InvoiceDate[<span class="Constant">0</span>].lower() != <span class="Constant">'</span><span class="Constant">c</span><span class="Constant">'</span> <span class="Statement">and</span> order.CustomerID != <span class="Constant">''</span>:
+            month = datetime.strptime(order.InvoiceDate, <span class="Constant">'</span><span class="Constant">%m/%d/%Y %H:%M</span><span class="Constant">'</span>).month
+            spent = <span class="Identifier">float</span>(order.UnitPrice) * <span class="Identifier">float</span>(order.Quantity)
+            <span class="Identifier">print</span>(<span class="Constant">'</span><span class="Constant">{0:02},{1}</span><span class="Special">\t</span><span class="Constant">{2},{3}</span><span class="Constant">'</span>.format(month, order.Country, order.CustomerID, spent))
+<span class="DiffDelete">----------------------------------------------------------------------------------------------------</span>
+
+
+<span class="Statement">if</span> __name__ == <span class="Constant">'</span><span class="Constant">__main__</span><span class="Constant">'</span>:
+    main(sys.argv)
+</pre>
+</div></td>
+</tr>
+</table>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
+

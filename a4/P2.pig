@@ -6,3 +6,5 @@ df3 = FOREACH df2 GENERATE group, COUNT(df.mas::playerID) AS cnt;
 df4 = GROUP df3 ALL;
 df5 = FOREACH df4 GENERATE MAX(df3.cnt) AS max_cnt;
 df6 = JOIN df5 BY max_cnt, df3 BY cnt;
+df7 = FOREACH df6 GENERATE df3::group.$0;
+DUMP df7;

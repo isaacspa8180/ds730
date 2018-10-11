@@ -5,4 +5,5 @@ df2 = FILTER df BY B3 > 5 AND yearID == 2005;
 df3 = GROUP df2 ALL;
 df4 = FOREACH df3 GENERATE MAX(df2.weight) AS max_weight;
 df5 = JOIN df2 BY weight, df4 BY max_weight;
-df6 = FOREACH df5 GENERATE mas::playerID;
+df6 = FOREACH df5 GENERATE df2::mas::playerID;
+DUMP df6;
