@@ -1,5 +1,9 @@
+--=============================================================================
+-- Data
+--=============================================================================
 b = LOAD 'hdfs:/user/maria_dev/pig/Batting.csv' USING PigStorage(',') AS (playerID:chararray,yearID:int,teamID:chararray,lgID:chararray,G:int,AB:int,R:int,H:int,B2:int,B3:int,HR:int,RBI:int,SB:int,CS:int,BB:int,SO:int,IBB:int,HBP:int,SH:int,SF:int,GIDP:int);
 f = LOAD 'hdfs:/user/maria_dev/pig/Fielding.csv' USING PigStorage(',') AS (playerID:chararray,yearID:int,teamID:chararray,lgID:chararray,POS:chararray,G:int,GS:int,InnOuts:int,PO:int,A:int,E:int,DP:int,PB:int,WP:int,SB:int,CS:int,ZR:int);
+
 --============================================================================
 -- Batting 
 --============================================================================
@@ -24,6 +28,7 @@ E2 = FILTER D2 BY G_tot >= 20;
 --============================================================================
 F = JOIN E1 BY playerID, E2 BY playerID;
 G = FOREACH F GENERATE E1::playerID AS playerID, ((E1::H_tot / E1::AB_tot) - (E2::E_tot / E2::G_tot)) AS stat;
-H = ORDER G by stat DESC;
-I = LIMIT H 3;
-DUMP I;
+H = RANK G by stat DESC DENSE;
+I = FILTER H BY rank_G <= 3;
+J = FOREACH I GENERATE playerID;
+DUMP J;

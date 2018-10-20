@@ -1,0 +1,32 @@
+P1
+(Cincinnati)
+
+P2
+(11/18)
+(8/15)
+(8/4)
+
+P3
+(185)
+
+P4
+(SDN)
+
+P5
+(longhe01)
+
+P6
+(escobal01)
+(suzukic01)
+(hoppeno01)
+
+P7
+(Los Angeles/CA)
+(Chicago/IL)
+(Philadelphia/PA)
+(St. Louis/MO)
+(San Francisco/CA)
+
+P8
+(10/San Cristobal)
+
