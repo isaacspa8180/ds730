@@ -19,15 +19,17 @@ CREATE EXTERNAL TABLE IF NOT EXISTS fielding(playerID STRING, yearID INT, teamID
 --=============================================================================
 -- view
 --=============================================================================
-CREATE VIEW x AS
-x
+DROP VIEW IF EXISTS DoupleTripleCountByBirthCityState;
+CREATE VIEW DoupleTripleCountByBirthCityState AS
+SELECT CONCAT(m.birthCity, '/', m.birthState) AS birthCityState, SUM(b.B2 + b.B3) AS dbl_tpl, DENSE_RANK() OVER (ORDER BY SUM(b.B2 + b.B3) DESC) AS rnk
+FROM batting b
+INNER JOIN master m on m.playerID = b.playerID
+WHERE m.birthCity IS NOT NULL AND m.birthState IS NOT NULL
+GROUP BY CONCAT(m.birthCity, '/', m.birthState);
 
 --=============================================================================
 -- select
 --=============================================================================
-SELECT x
-FROM x
-INNER JOIN 
-WHERE
-GROUP BY
-HAVING
+SELECT birthCityState
+FROM DoupleTripleCountByBirthCityState
+WHERE rnk <= 5;

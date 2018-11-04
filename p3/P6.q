@@ -57,14 +57,3 @@ INNER JOIN PlayerFielding AS f
 ON f.playerID = b.playerID;
 
 SELECT playerID FROM PlayerStat WHERE rnk <= 3;
-
---(1,escobal01,0.3128436)
---(2,suzukic01,0.3082046)
---(3,hoppeno01,0.3076566)
---(4,mauerjo01,0.29985067)
---(5,redmomi01,0.29663962)
---(6,ordonma01,0.29417863)
---(7,velanjo01,0.2923077)
---(8,vargaja01,0.29166666)
---(9,ellsbja01,0.29061928)
---(10,hollima01,0.2891589)

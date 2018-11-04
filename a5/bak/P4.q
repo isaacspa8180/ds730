@@ -13,19 +13,19 @@ CREATE EXTERNAL TABLE IF NOT EXISTS master(id STRING, byear INT, bmonth INT, bda
 --=============================================================================
 -- view
 --=============================================================================
-CREATE VIEW PlayerTeamCountByYear
+CREATE VIEW PlayerTotalHits
 AS
-SELECT b.id, COUNT(*) AS cnt
+SELECT b.id, SUM(b.hits) AS tot_hits 
 FROM batting b
-GROUP BY b.id, b.year;
+INNER JOIN master m ON m.id = b.id
+WHERE m.bats = 'R' 
+AND m.bmonth = 10 
+AND m.dyear = 2011
+GROUP BY b.id;
 
 --=============================================================================
 -- select
 --=============================================================================
-SELECT id FROM PlayerTeamCountByYear 
-INNER JOIN (SELECT MAX(cnt) AS max_cnt FROM PlayerTeamCountByYear) AS max
-ON max.max_cnt = PlayerTeamCountByYear.cnt;
-
---This is another was to do it.
---SELECT id FROM PlayerTeamCountByYear
---WHERE cnt IN (SELECT MAX(cnt) FROM PlayerTeamCountByYear);
+SELECT id FROM PlayerTotalHits
+INNER JOIN (SELECT MAX(tot_hits) AS max_tot_hits FROM PlayerTotalHits) AS max
+ON max.max_tot_hits = PlayerTotalHits.tot_hits;
