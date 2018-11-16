@@ -18,7 +18,7 @@ public class StringThread extends Thread{
         }
     }
     public void run() {
-        TreeMap<String, TreeSet<String>> index = new TreeMap<>();
+        TreeMap<String, TreeSet<Integer>> index = new TreeMap<>();
         int characterCount = 0;
         Scanner input = getScanner(file);
         while (input.hasNextLine()) {
@@ -31,10 +31,17 @@ public class StringThread extends Thread{
                 if (index.get(word) == null) {
                     index.put(word, new TreeSet<>());
                 }
-                index.get(word).add(currentPage.toString());
+                index.get(word).add(currentPage);
             }
-            //TODO: Have this function format the pages
         }
-        GlobalRunner.addIndex(file.getName(), index);
+        TreeMap<String, String> indexFormatted = new TreeMap<>();
+        for (String word : index.keySet()) {
+            ArrayList<String> pgNums = new ArrayList<>();
+            for (Integer pgNum : index.get(word)) {
+               pgNums.add(pgNum.toString()); 
+            }
+            indexFormatted.put(word, String.join(":", pgNums));
+        }
+        GlobalRunner.addIndex(file.getName(), indexFormatted);
     }
 }
