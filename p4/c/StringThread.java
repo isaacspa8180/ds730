@@ -20,18 +20,25 @@ public class StringThread extends Thread{
     public void run() {
         TreeMap<String, TreeSet<Integer>> index = new TreeMap<>();
         int characterCount = 0;
+        int pageCount = 1;
         Scanner input = getScanner(file);
         while (input.hasNextLine()) {
             String line = input.nextLine();                
             String[] wordList = line.split("\\s+");
             for (String word : wordList) {
+                if (word.length() == 0) {
+                    continue;
+                }
                 word = word.toLowerCase();
                 characterCount += word.length();
-                Integer currentPage = characterCount / pageCharacterLength;
+                if (characterCount > pageCharacterLength) {
+                    pageCount += 1;
+                    characterCount = word.length();
+                }
                 if (index.get(word) == null) {
                     index.put(word, new TreeSet<>());
                 }
-                index.get(word).add(currentPage);
+                index.get(word).add(pageCount);
             }
         }
         TreeMap<String, String> indexFormatted = new TreeMap<>();

@@ -29,21 +29,28 @@ public class FileThread extends Thread{
     }
 
     public void run() {
-        TreeMap<String, TreeSet<String>> index = new TreeMap<>();
+        TreeMap<String, TreeSet<Integer>> index = new TreeMap<>();
         int characterCount = 0;
+        int pageCount = 1;
         //Scanner input = new Scanner(file);
         Scanner input = getScanner(file);
         while (input.hasNextLine()) {
             String line = input.nextLine();                
             String[] wordList = line.split("\\s+");
             for (String word : wordList) {
+                if (word.length() == 0) {
+                    continue;
+                }
                 word = word.toLowerCase();
                 characterCount += word.length();
-                Integer currentPage = characterCount / pageCharacterLength;
+                if (characterCount > pageCharacterLength) {
+                    pageCount += 1;
+                    characterCount = word.length();
+                }
                 if (index.get(word) == null) {
                     index.put(word, new TreeSet<>());
                 }
-                index.get(word).add(currentPage.toString());
+                index.get(word).add(pageCount);
             }
         }
         if (! outputDir.isDirectory()) {
@@ -54,8 +61,11 @@ public class FileThread extends Thread{
         //PrintWriter out = new PrintWriter(outputFile);
         PrintWriter out = getPrintWriter(outputFile);
         for (String word : index.keySet()) {
-            Iterable<String> pageNumbers = index.get(word);
-            out.println(word + " " + String.join(", ", pageNumbers));
+            ArrayList<String> pgNums = new ArrayList<>();
+            for (Integer pgNum : index.get(word)) {
+               pgNums.add(pgNum.toString()); 
+            }
+            out.println(word + " " + String.join(", ", pgNums));
             //System.out.println(word + " " + String.join(", ", index.get(word)));
         }
         out.flush();

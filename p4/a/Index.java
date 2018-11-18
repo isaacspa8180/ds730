@@ -9,20 +9,27 @@ public class Index{
         int pageCharacterLength = Integer.parseInt(args[2]);
         File outputDir = new File(args[1]);
         for (File file : inputFiles) {
-            TreeMap<String, TreeSet<String>> index = new TreeMap<>();
+            TreeMap<String, TreeSet<Integer>> index = new TreeMap<>();
             int characterCount = 0;
+            int pageCount = 1;
             Scanner input = new Scanner(file);
             while (input.hasNextLine()) {
                 String line = input.nextLine();                
-                String[] wordList = line.split("\\s+");
+                String[] wordList = line.trim().split("\\s+");
                 for (String word : wordList) {
+                    if (word.length() == 0) {
+                        continue;
+                    }
                     word = word.toLowerCase();
                     characterCount += word.length();
-                    Integer currentPage = characterCount / pageCharacterLength;
+                    if (characterCount > pageCharacterLength) {
+                        pageCount += 1;
+                        characterCount = word.length();
+                    }
                     if (index.get(word) == null) {
                         index.put(word, new TreeSet<>());
                     }
-                    index.get(word).add(currentPage.toString());
+                    index.get(word).add(pageCount);
                 }
             }
             if (! outputDir.isDirectory()) {
@@ -32,9 +39,11 @@ public class Index{
                                         file.getName().replace(".txt", "_output.txt")).toFile();
             PrintWriter out = new PrintWriter(outputFile);
             for (String word : index.keySet()) {
-                Iterable<String> pageNumbers = index.get(word);
-                out.println(word + " " + String.join(", ", pageNumbers));
-                //System.out.println(word + " " + String.join(", ", index.get(word)));
+                ArrayList<String> pgNums = new ArrayList<>();
+                for (Integer pgNum : index.get(word)) {
+                   pgNums.add(pgNum.toString()); 
+                }
+                out.println(word + " " + String.join(", ", pgNums));
             }
             out.flush();
             out.close();
