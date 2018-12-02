@@ -11,9 +11,6 @@ public class GlobalRunner {
     public static void main(String[] args) throws InterruptedException, FileNotFoundException{
         long start = System.currentTimeMillis();
         File[] inputFiles = new File(args[0]).listFiles();
-        File outputDir = new File(args[1]);
-        File outputFile = Paths.get(outputDir.getName(), "output.txt").toFile();
-        PrintWriter out = new PrintWriter(outputFile);
         int pageCharacterLength = Integer.parseInt(args[2]);
         StringThread[] stringThreads = new StringThread[inputFiles.length];
         int i = 0;
@@ -34,6 +31,12 @@ public class GlobalRunner {
                 globalWordSet.add(word);
             }
         }
+        File outputDir = new File(args[1]);
+        if (! outputDir.isDirectory()) {
+            outputDir.mkdir();
+        }
+        File outputFile = Paths.get(outputDir.getName(), "output.txt").toFile();
+        PrintWriter out = new PrintWriter(outputFile);
         //write header
         out.println("Word, " + String.join(", ", indexes.keySet()));
         //writer body
