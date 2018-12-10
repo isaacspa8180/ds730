@@ -11,7 +11,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS oshkosh(Year STRING, Month STRING, Day STRIN
 DROP VIEW IF EXISTS v1;
 CREATE VIEW v1 AS
 SELECT FROM_UNIXTIME(UNIX_TIMESTAMP(concat(Year, "-", Month, "-", Day, " ", TimeCST), 'yyyy-M-d h:m a'), 'yyyy-MM-dd') AS dte,
-FROM_UNIXTIME(UNIX_TIMESTAMP(concat(Year, "-", Month, "-", Day, " ", TimeCST), 'yyyy-M-d h:m a'), 'yyyy-MM-dd h:00:00 a') AS dte_h,
+FROM_UNIXTIME(UNIX_TIMESTAMP(concat(Year, "-", Month, "-", Day, " ", TimeCST), 'yyyy-M-d h:m a'), 'yyyy-MM-dd HH:00:00 a') AS dte_h,
 TemperatureF
 FROM oshkosh
 WHERE TemperatureF != -9999;
@@ -33,8 +33,6 @@ SELECT HOUR(dte_h) AS hr
 FROM v3
 WHERE mintemp = avgtemp;
 
-DROP VIEW IF EXISTS v5;
-CREATE VIEW v5 AS
 SELECT hr, COUNT(*)
 FROM v4
 GROUP BY hr;

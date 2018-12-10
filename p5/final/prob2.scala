@@ -1,4 +1,4 @@
-val text = sc.textFile("sample.txt")
+val text = sc.textFile("input2.txt")
 val head_tail = text.map(_.trim.split(" : "))
 val building_name = head_tail
   .map(_.head)
@@ -32,9 +32,12 @@ for (trip <- possible_trips) {
         min_trip_cost = trip_cost
     }
 }
+val p = new java.io.PrintWriter("output2.txt")
+p.println(min_trip_cost)
 for ((trip, cost) <- trip_map) {
     if (cost == min_trip_cost) {
-        print(trip.map(building_name(_)))
+        p.println(trip.map(building_name(_)))
     }
 }
-println(min_trip_cost)
+p.flush
+p.close

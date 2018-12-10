@@ -1,7 +1,7 @@
 .vscode/
 dat/
 *.zip
-orders.csv
+*.csv
 input/
 output/
 *.tar.gz

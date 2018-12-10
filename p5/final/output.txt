@@ -1,0 +1,31 @@
+1a
+There are more cold days.
+
+1b
+fall:	-2.7971189309517968 degrees
+spring:	-5.446071101789066 degrees
+summer:	-3.3949779201476247 degrees
+winter:	-2.178551911619671 degrees
+
+1c
+June 29, 2012 to July 06, 2012
+
+1d
+5 AM
+
+1e
+Iowa City, 56.2 degrees, December 14, 2008 12:29pm to December 15, 2008 6:52am
+
+1f
+Jan: 2pm in Iowa City 
+Feb: 2pm in Iowa City
+Mar: 2pm in Iowa City
+Apr: 9am in Iowa City
+May: 5am in Oshkosh
+Jun: 5am in Oshkosh
+Jul: 5am in Oshkosh
+Aug: 5am in Oshkosh
+Sep: 5am in Iowa City
+Oct: 9am in Oshkosh
+Nov: 1pm in Iowa City
+Dec: 2pm in Iowa City

@@ -7,7 +7,7 @@ verify_ssl = true
 
 [packages]
 pandas = "*"
-ipython = "*"
+matplotlib = "*"
 
 [requires]
 python_version = "3.7"

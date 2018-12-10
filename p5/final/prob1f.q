@@ -45,7 +45,8 @@ CREATE VIEW v3 AS
 SELECT *, ABS(50 - avgtemp) AS distto50, MIN(ABS(50 - avgtemp)) OVER (PARTITION BY city, Month) AS closestto50
 FROM v2;
 
-SELECT *
+SELECT Month, city, hour, closestto50
 FROM v3
-WHERE distto50 = closestto50;
+WHERE distto50 = closestto50
+order by Month;
 
